@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+language: bash
+script:
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - docker build -t prisms/gateway .
+  - docker run prisms/gateway which hass
+  - >
+    if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+      export REPO=prisms/gateway
+      TAG=$(grep "ENV BASE_VERSION" Dockerfile | awk '{print $2}' | awk -F= '{print $2}')
+      docker tag $REPO $REPO:$TAG
+      docker push $REPO:$TAG
+      docker push $REPO
+    fi

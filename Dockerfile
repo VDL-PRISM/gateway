@@ -1,4 +1,4 @@
-FROM prisms/gateway-base
+FROM prisms/gateway-base:1.0.0
 LABEL maintainer "Philip Lundrigan <philipbl@cs.utah.edu>"
 
 # Set our working directory
@@ -16,9 +16,6 @@ RUN git clone https://github.com/VDL-PRISM/home-assistant-components.git && \
     cd custom_components && \
     git checkout tags/v0.1.0 && \
     pip3 install --no-cache-dir -r requirements.txt
-
-# This will copy all files in our root to the working directory in the container
-COPY . ./
 
 # Switch on systemd init system in container
 ENV INITSYSTEM on
