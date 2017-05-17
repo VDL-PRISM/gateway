@@ -10,7 +10,7 @@ script:
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
       docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
       export REPO=prisms/gateway
-      TAG=$(grep "ENV BASE_VERSION" Dockerfile | awk '{print $2}' | awk -F= '{print $2}')
+      TAG=$(grep "ENV IMAGE_VERSION" Dockerfile | awk '{print $2}' | awk -F= '{print $2}')
       docker tag $REPO $REPO:$TAG
       docker push $REPO:$TAG
       docker push $REPO

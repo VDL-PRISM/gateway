@@ -20,4 +20,5 @@ RUN git clone https://github.com/VDL-PRISM/home-assistant-components.git && \
 # Switch on systemd init system in container
 ENV INITSYSTEM on
 
+ENV IMAGE_VERSION 1.0.0
 CMD ["hass", "-c", "/usr/src/app/"]
