@@ -1,11 +1,11 @@
-FROM prisms/gateway-base:1.0.0
+FROM prisms/gateway-base
 LABEL maintainer "Philip Lundrigan <philipbl@cs.utah.edu>"
 
 # Set our working directory
 WORKDIR /usr/src/app
 
-# # Set up links to openzwave
-# RUN ln -sd /usr/local/lib/python3.*/site-packages/python_openzwave/ozw_config
+# Set up links to openzwave
+RUN ln -sd /usr/local/lib/python3.*/site-packages/python_openzwave/ozw_config
 
 # Install Home Assistant
 RUN pip install homeassistant==0.40.2
