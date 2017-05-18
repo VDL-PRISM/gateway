@@ -1,4 +1,4 @@
-FROM prisms/gateway-base
+FROM prisms/gateway-base:1.1.0
 LABEL maintainer "Philip Lundrigan <philipbl@cs.utah.edu>"
 
 # Install Supervisor
