@@ -16,13 +16,13 @@ RUN mkdir /etc/homeassistant
 # Install custom components
 RUN git clone https://github.com/VDL-PRISM/home-assistant-components.git && \
     cd home-assistant-components && \
-    git checkout tags/v0.1.0 && \
+    git checkout tags/v0.1.1 && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy Supervisor configuration
 COPY programs.conf /etc/supervisor/conf.d/programs.conf
 
-ENV IMAGE_VERSION 1.0.0
+ENV IMAGE_VERSION 1.0.1
 
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
