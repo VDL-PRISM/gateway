@@ -1,4 +1,4 @@
-FROM prisms/gateway-base:1.1.0
+FROM prisms/gateway-base:1.2.0
 LABEL maintainer "Philip Lundrigan <philipbl@cs.utah.edu>"
 
 # Install Supervisor
@@ -16,13 +16,13 @@ RUN mkdir /etc/homeassistant
 # Install custom components
 RUN git clone https://github.com/VDL-PRISM/home-assistant-components.git && \
     cd home-assistant-components && \
-    git checkout tags/v0.1.1 && \
+    git checkout tags/v1.0.0 && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy Supervisor configuration
 COPY programs.conf /etc/supervisor/conf.d/programs.conf
 
-ENV IMAGE_VERSION 1.0.1
+ENV IMAGE_VERSION 1.1.0
 
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
