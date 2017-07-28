@@ -13,12 +13,6 @@ RUN pip install --no-cache-dir dumb-init
 RUN pip install --no-cache-dir homeassistant==0.40.2
 RUN mkdir /etc/homeassistant
 
-# Install custom components
-RUN git clone https://github.com/VDL-PRISM/home-assistant-components.git && \
-    cd home-assistant-components && \
-    git checkout tags/v1.0.0 && \
-    pip install --no-cache-dir -r requirements.txt
-
 # Copy Supervisor configuration
 COPY programs.conf /etc/supervisor/conf.d/programs.conf
 
@@ -26,4 +20,4 @@ ENV IMAGE_VERSION 1.1.0
 
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
-CMD ["bash", "-c", "cp -RT /home-assistant-components /etc/homeassistant/custom_components && supervisord -c /etc/supervisor/supervisord.conf -n"]
+CMD ["bash", "-c", "supervisord -c /etc/supervisor/supervisord.conf -n"]
