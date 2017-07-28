@@ -16,7 +16,7 @@ RUN mkdir /etc/homeassistant
 # Copy Supervisor configuration
 COPY programs.conf /etc/supervisor/conf.d/programs.conf
 
-ENV IMAGE_VERSION 1.1.0
+ENV IMAGE_VERSION 1.2.0
 
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
 
